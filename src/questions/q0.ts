@@ -1,4 +1,4 @@
-import { Question, tools } from '.';
+import { Question, shortCode } from '.';
 
 const q: Question = {
   short: 'Вы дядя женя?',
@@ -15,25 +15,7 @@ const q: Question = {
 				</div>
 			`;
 
-    tools.markSelected(qId);
-
-    tools.getQuestions<HTMLButtonElement>(qId).forEach((quest) => {
-      quest.onclick = (event) => {
-        const target = event.target as HTMLButtonElement;
-
-        if (tools.checkSelected(qId, target.id)) {
-          tools.mark(
-            qId,
-            {
-              selected: target.id,
-            },
-            +target.dataset.score!,
-          );
-
-          tools.buttonColor(qId, target.id);
-        }
-      };
-    });
+      shortCode.buttons()
   },
 };
 

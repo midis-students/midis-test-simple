@@ -52,3 +52,27 @@ export const tools = {
     return answers[qId]?.data.selected != targetId;
   },
 };
+
+export const shortCode = {
+  buttons(qId: number) {
+    tools.markSelected(qId);
+
+    tools.getQuestions<HTMLButtonElement>(qId).forEach((quest) => {
+      quest.onclick = (event) => {
+        const target = event.target as HTMLButtonElement;
+
+        if (tools.checkSelected(qId, target.id)) {
+          tools.mark(
+            qId,
+            {
+              selected: target.id,
+            },
+            +target.dataset.score!,
+          );
+
+          tools.buttonColor(qId, target.id);
+        }
+      };
+    });
+  }
+}
