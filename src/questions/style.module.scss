@@ -1,0 +1,9 @@
+$higtlight: #00ac6b;
+
+.button-selected {
+  background: $higtlight !important;
+
+  &:hover {
+    background: lighten(#00ac6b, 5%) !important;
+  }
+}
