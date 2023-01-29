@@ -1,11 +1,21 @@
 import { Question, tools } from '.';
 const q: Question = {
-  short: 'QTitle5',
+  short: 'Код',
   query() {
-    return `Q5`;
+    //container.style
+    return `<pre><code>
+        function sum(a: number,b: number){
+          return a + b;
+        }
+        sum("zalupa",1);
+      </code></pre>`;
   },
   answer(container, qId) {
-    container.innerHTML = ``;
+    container.innerHTML = `
+				<div>
+					
+				</div>
+			`;
   },
 };
 

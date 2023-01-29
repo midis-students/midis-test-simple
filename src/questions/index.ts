@@ -62,6 +62,22 @@ export const tools = {
   getCode(qId: number) {
     return (<HTMLInputElement>document.getElementById(`q${qId}`)).value
   },
+  rnd(){
+    return (Math.random()+1).toString(36).substring(2)
+  },
+  safeCodeFunction(userCode: string, functionName: string, ...params: any){ // Запускает отдельное окно, где и запускается код. В nonBlocking, добавить то что не нужно блочить при необходимости
+    return new Promise((resolve)=>{
+      const nonBlocking = ["Object","eval","JSON","close"];
+      let win = window.open("", "_blank", "width=1px,height=1px")
+      let app = [this.rnd(),this.rnd()];
+      const scr = win!.document.createElement("script");
+      scr.innerHTML=`const _0x${app}=${JSON.stringify(nonBlocking)};Object.keys(window).forEach($=>{if(_0x${app}.indexOf($)==-1)eval("delete "+$)});Object.getOwnPropertyNames(window).forEach($=>{if(_0x${app}.indexOf($)==-1)eval("delete "+$)});delete Object;delete eval;${userCode};document.body.innerText=JSON.stringify(${functionName}(...${JSON.stringify(params)}))`
+      win!.document.body.appendChild(scr)
+      const data = JSON.parse(win!.document.body.innerText);
+      win!.close()
+      resolve(data)
+    })
+  },
   codeFunction(userCode: string, functionName: string, ...params: any){
     const p=(Math.random()+1).toString(36).substring(2);
     return eval(`new Promise(async(_0x${p})=>{${userCode.replaceAll("_0x","0x")};_0x${p}(await ${functionName}(...${JSON.stringify(params)}))})`)
