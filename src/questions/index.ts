@@ -9,8 +9,9 @@ import q6 from './q6';
 import q7 from './q7';
 import q8 from './q8';
 import q9 from './q9';
+import q10 from './q10';
 
-const list = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9] as Question[];
+const list = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10] as Question[];
 
 export default list;
 
@@ -43,13 +44,25 @@ export const tools = {
   answered(qId: number){
     return !!answers[qId]
   },
-  markSelected(qId: number) {
+
+  restoreButton(qId: number) {
     if (answers[qId]) {
       document
         .getElementById(answers[qId].data.selected)!
         .classList.add(style['button-selected']);
     }
   },
+  restoreCode(qId: number) {
+    if (answers[qId]) {
+      (<HTMLInputElement>document.getElementById(`q${qId}`)).value=answers[qId].data.code
+    }
+  },
+  restoreInput(qId: number) {
+    if (answers[qId]) {
+      (<HTMLInputElement>document.getElementById(`q${qId}`)).value=answers[qId].data.text
+    }
+  },
+
   buttonColor(qId: number, selectedId: string) {
     this.getQuestions(qId).forEach((answer) => {
       if (answer.id == selectedId) {
@@ -68,12 +81,15 @@ export const tools = {
   getInput(qId: number) { // Это только для инпута, если код менять будешь
     return (<HTMLInputElement>document.getElementById(`q${qId}`)).value
   },
-  rnd(){
+  rndStr(){
     return (Math.random()+1).toString(36).substring(2)
   },
+  rndInt(max: number){
+    return Math.floor(Math.random() * max)
+  },
   codeFunction(userCode: string, functionName: string, ...params: any){
-    const p=(Math.random()+1).toString(36).substring(2);
-    return eval(`new Promise(async(_0x${p})=>{${userCode.replaceAll("_0x","0x")};_0x${p}(await ${functionName}(...${JSON.stringify(params)}))})`)
+    const p=this.rndStr();
+    return eval(`new Promise(async(_0x${p})=>{try{${userCode.replaceAll("_0x","0x")};_0x${p}(await ${functionName}(...${JSON.stringify(params)}))}catch(e){_0x${p}(0)}})`)
   },
   fixInput(text: string) {
     return text.toLowerCase().replaceAll(/\s+/gm," ").trim()
@@ -82,7 +98,7 @@ export const tools = {
 
 export const shortCode = {
   buttons(qId: number) {
-    tools.markSelected(qId);
+    tools.restoreButton(qId);
 
     tools.getQuestions<HTMLButtonElement>(qId).forEach((quest) => {
       quest.onclick = (event) => {
@@ -102,7 +118,13 @@ export const shortCode = {
       };
     });
   },
-  input(qId: number, answer: string, lowercase: boolean=true){
+  code(qId: number){
+    tools.restoreCode(qId);
+  },
+  input(qId: number) {
+    tools.restoreInput(qId);
+  },
+  inputCheck(qId: number, answer: string, lowercase: boolean=true){
     let userInput = tools.getInput(qId);
     if(
       (lowercase)
@@ -117,5 +139,5 @@ export const shortCode = {
         text:userInput
       }, 0)
     }
-  }
+  },
 }

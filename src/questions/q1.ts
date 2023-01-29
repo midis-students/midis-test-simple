@@ -1,4 +1,7 @@
-import { Question, tools } from '.';
+import { Question, tools, shortCode } from '.';
+
+// Код
+
 const q: Question = {
   short: '!',
   query() {
@@ -10,6 +13,7 @@ const q: Question = {
   },
   answer(container, qId) {
     container.innerHTML = `<input id="q${qId}" type="text">`;
+    shortCode.code(qId);
   },
   check(qId){
     let userCode = tools.getCode(qId);

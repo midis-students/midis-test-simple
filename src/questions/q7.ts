@@ -1,4 +1,7 @@
 import { Question, tools } from '.';
+
+// Реклама
+
 const q: Question = {
   short: 'Реклама',
   query() {

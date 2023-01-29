@@ -1,4 +1,7 @@
 import { Question, shortCode } from '.';
+
+// Кнопочки
+
 const q: Question = {
   short: 'React фреймворки',
   query() {

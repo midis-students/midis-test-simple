@@ -7,10 +7,10 @@ const ButtonNext = document.querySelector<HTMLButtonElement>('#btn-next')!;
 
 let current = 0;
 
-function render(index: number) {
+async function render(index: number) {
   const prev = questions.at(current);
   if (prev) {
-    prev.check?.(current);
+    await prev.check?.(current);
   }
   current = index;
 

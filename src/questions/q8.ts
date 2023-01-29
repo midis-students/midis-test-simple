@@ -1,4 +1,7 @@
 import { Question, shortCode } from '.';
+
+// Инпут
+
 const q: Question = {
   short: 'Хахатон',
   query() {
@@ -6,9 +9,10 @@ const q: Question = {
   },
   answer(container, qId) {
     container.innerHTML = `<input id="q${qId}" type="number">`;
+    shortCode.input(qId);
   },
   check(qId){
-    shortCode.input(qId, "100000")
+    shortCode.inputCheck(qId, "100000")
   }
 };
 

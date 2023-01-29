@@ -1,4 +1,7 @@
-import { Question, tools } from '.';
+import { Question, tools, shortCode } from '.';
+
+// Код
+
 const q: Question = {
   short: 'Куб',
   query() {
@@ -9,10 +12,11 @@ const q: Question = {
   },
   answer(container, qId) {
     container.innerHTML = `<input id="q${qId}" type="text">`;
+    shortCode.code(qId);
   },
   async check(qId){
     let userCode = tools.getCode(qId);
-    let f = Math.floor(Math.random() * 100);
+    let f = tools.rndInt(100);
     if(await tools.codeFunction(userCode, "cube", f) == f*f*f){
       tools.mark(qId, {
         code:userCode
