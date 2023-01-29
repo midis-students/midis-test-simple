@@ -3,8 +3,8 @@ const q: Question = {
   short: '!',
   query() {
     return `
-      <h1>!</h1>
-      <p>Переставь ! так, чтобы было true</p>
+      <h1>({}=!={})</h1>
+      <p>Переставь <strong>!</strong> так, чтобы условие вернуло <strong>true</strong></p>
       <code>({}=!={})</code>
     `;
   },
