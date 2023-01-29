@@ -1,8 +1,8 @@
 import { Question, tools } from '.';
 const q: Question = {
-  short: 'QTitle',
+  short: 'QTitle5',
   query() {
-    return ``;
+    return `Q5`;
   },
   answer(container, qId) {
     container.innerHTML = ``;

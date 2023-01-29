@@ -6,14 +6,12 @@ const q: Question = {
   },
   answer(container, qId) {
     container.innerHTML = `
-      <div>
-        <button class="quest-${qId}" id="q${qId}a0" data-score=0>Nuxt.js</button>
-        <button class="quest-${qId}" id="q${qId}a1" data-score=1>Next.js</button>
-        <button class="quest-${qId}" id="q${qId}a2" data-score=0>Nest.js</button>
-        <button class="quest-${qId}" id="q${qId}a3" data-score=0>Vite.js</button>
-      </div>
+      <button class="quest-${qId}" id="q${qId}a0" data-score=0>Nuxt.js</button>
+      <button class="quest-${qId}" id="q${qId}a1" data-score=1>Next.js</button>
+      <button class="quest-${qId}" id="q${qId}a2" data-score=0>Nest.js</button>
+      <button class="quest-${qId}" id="q${qId}a3" data-score=0>Vite.js</button>
     `;
-    shortCode.buttons()
+    shortCode.buttons(qId);
   },
 };
 

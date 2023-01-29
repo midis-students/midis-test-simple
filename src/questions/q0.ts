@@ -8,14 +8,12 @@ const q: Question = {
   },
   answer(container, qId) {
     container.innerHTML = `
-				<div>
-					<button class="quest-${qId}" id="q${qId}a0" data-score=2>Женя</button>
-					<button class="quest-${qId}" id="q${qId}a1" data-score=1>World</button>
-					<button class="quest-${qId}" id="q${qId}a2" data-score=0>Somebody</button>
-				</div>
+        <button class="quest-${qId}" id="q${qId}a0" data-score=2>Женя</button>
+        <button class="quest-${qId}" id="q${qId}a1" data-score=1>World</button>
+        <button class="quest-${qId}" id="q${qId}a2" data-score=0>Somebody</button>
 			`;
 
-      shortCode.buttons()
+      shortCode.buttons(qId);
   },
 };
 

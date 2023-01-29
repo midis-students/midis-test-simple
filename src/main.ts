@@ -39,7 +39,7 @@ function render(index: number) {
                 out += wrap('lime', 'Правильно');
                 break;
               default:
-                out += wrap('lime', 'Заебца');
+                out += wrap('lime', 'Да');
             }
           } else {
             out += wrap('red', 'Не ответил');

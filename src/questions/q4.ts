@@ -1,4 +1,4 @@
-import { Question, simpleCode } from '.';
+import { Question, shortCode } from '.';
 const q: Question = {
   short: 'Импортозамещение',
   query() {
@@ -6,17 +6,15 @@ const q: Question = {
   },
   answer(container, qId) {
     container.innerHTML = `
-      <div>
-        <button class="quest-${qId}" id="q${qId}a0" data-score=0>YoptaScript</button>
-        <button class="quest-${qId}" id="q${qId}a1" data-score=0>1C</button>
-        <button class="quest-${qId}" id="q${qId}a2" data-score=2>C++</button>
-        <button class="quest-${qId}" id="q${qId}a3" data-score=0>C#</button>
-        <button class="quest-${qId}" id="q${qId}a4" data-score=0>C</button>
-        <button class="quest-${qId}" id="q${qId}a5" data-score=0>Кумир</button>
-        <button class="quest-${qId}" id="q${qId}a6" data-score=0>Pascal</button>
-      </div>
+      <button class="quest-${qId}" id="q${qId}a0" data-score=0>YoptaScript</button>
+      <button class="quest-${qId}" id="q${qId}a1" data-score=0>1C</button>
+      <button class="quest-${qId}" id="q${qId}a2" data-score=1>C++</button>
+      <button class="quest-${qId}" id="q${qId}a3" data-score=0>C#</button>
+      <button class="quest-${qId}" id="q${qId}a4" data-score=0>C</button>
+      <button class="quest-${qId}" id="q${qId}a5" data-score=0>Кумир</button>
+      <button class="quest-${qId}" id="q${qId}a6" data-score=0>Pascal</button>
     `;
-    shortCode.buttons()
+    shortCode.buttons(qId);
   },
 };
 

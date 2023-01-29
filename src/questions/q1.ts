@@ -13,7 +13,7 @@ const q: Question = {
   answer(container, qId) {
     container.innerHTML = `
 				<div>
-					<button class="quest-${qId}" id="q${qId}a0" data-score=2>Женя</button>
+					
 				</div>
 			`;
   },

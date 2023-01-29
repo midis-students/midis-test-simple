@@ -1,8 +1,16 @@
 import style from './style.module.scss';
 import q0 from './q0';
 import q1 from './q1';
+import q2 from './q2';
+import q3 from './q3';
+import q4 from './q4';
+import q5 from './q5';
+import q6 from './q6';
+import q7 from './q7';
+import q8 from './q8';
+import q9 from './q9';
 
-const list = [q0, q1] as Question[];
+const list = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9] as Question[];
 
 export default list;
 
@@ -51,6 +59,16 @@ export const tools = {
   checkSelected(qId: number, targetId: string) {
     return answers[qId]?.data.selected != targetId;
   },
+  getCode(qId: number) {
+    return (<HTMLInputElement>document.getElementById(`q${qId}`)).value
+  },
+  codeFunction(userCode: string, functionName: string, ...params: any){
+    const p=(Math.random()+1).toString(36).substring(2);
+    return eval(`new Promise(async(_0x${p})=>{${userCode.replaceAll("_0x","0x")};_0x${p}(await ${functionName}(...${JSON.stringify(params)}))})`)
+  },
+  fixInput(text: string) {
+    return text.toLowerCase().replaceAll(/\s+/gm," ").trim()
+  }
 };
 
 export const shortCode = {
@@ -74,9 +92,5 @@ export const shortCode = {
         }
       };
     });
-  },
-  codeFunction(userCode: string, functionName: string, ...params: any){
-    const p=(Math.random()+1).toString(36).substring(2);
-    return eval(`new Promise(async(_0x${p})=>{${textcode.replaceAll("_0x","0x")};_0x${p}(await ${funcName}(...${JSON.stringify(params)}))})`)
   }
 }
