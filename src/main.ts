@@ -39,7 +39,7 @@ function render(index: number) {
                 out += wrap('lime', 'Правильно');
                 break;
               case 2:
-                out += wrap("lime", 'Молодец')
+                out += wrap("lime", 'Харош')
               default:
                 out += wrap('lime', 'Да');
             }

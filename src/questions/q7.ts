@@ -9,7 +9,7 @@ const q: Question = {
     container.innerHTML = `Продам гараж +79${Math.floor(Math.random()*1000000000)}`;
     if(!tools.answered(qId)){
       let timer = setTimeout(()=>{
-        tools.mark(qId, {}, 3);
+        tools.mark(qId, {}, 2);
       },5000);
       this.check=(qId)=>{
         clearTimeout(timer)
