@@ -1,32 +1,27 @@
-import { Question, tools, shortCode } from '.';
-
-// Код
+import { Question, shortCode } from '.';
 
 const q: Question = {
-  short: 'Куб',
+  short: 'Abstract Class',
   query() {
-    return `
-      <h1>Куб</h1>
-      <p>Напишите функцию <strong>cube</strong>, которая принимает переменную <strong>N</strong> в виде числа и возвращает число N в кубе</p>
+    return `<h1>Что вернет этот код?</h1>
+      <pre><code>
+  abstract class Foo{
+    constructor(){
+      console.log("Hello world")
+    }  
+  }
+  new Foo();
+      </code></pre>
     `;
   },
   answer(container, qId) {
-    container.innerHTML = `<input id="q${qId}" type="text">`;
-    shortCode.code(qId);
+    container.innerHTML = `
+      <button class="quest-${qId}" id="q${qId}a0" data-score=0>Hello world</button>
+      <button class="quest-${qId}" id="q${qId}a1" data-score=1>Ошибку</button>
+      <button class="quest-${qId}" id="q${qId}a2" data-score=0>Ничего</button>
+    `;
+    shortCode.buttons(qId);
   },
-  async check(qId){
-    let userCode = tools.getCode(qId);
-    let f = tools.rndInt(100);
-    if(await tools.codeFunction(userCode, "cube", f) == f*f*f){
-      tools.mark(qId, {
-        code:userCode
-      }, 1)
-    }else{
-      tools.mark(qId, {
-        code:userCode
-      }, 0)
-    }
-  }
 };
 
 export default q;

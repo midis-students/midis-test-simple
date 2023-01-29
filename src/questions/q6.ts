@@ -1,21 +1,79 @@
-import { Question, shortCode } from '.';
+import { Question, tools } from '.';
+import { createEditor } from '../editor';
 
-// Инпут
+// Код
 
 const q: Question = {
-  short: 'Ку',
+  short: 'Наследование',
   query() {
-    return `<h1>Угадай ЯП</h1>
-    <p>Дарова 6=>2</p>
-    <p>!Война</p>`;
+    return `
+			<h1>Напишите класс Dog, который наследуется от класса Animal, и вызывает метод say</h1>
+      <pre><code>
+      const dog = new Dog();
+      dog.say(); // гав-гав
+      </code></pre>
+		`;
   },
   answer(container, qId) {
-    container.innerHTML = `<input id="q${qId}" type="text">`;
-    shortCode.input(qId);
+    const getValue = createEditor(container, tools.restoreEditor(qId));
+    this.check = async (qId) => {
+      let userCode = getValue();
+      let valid = await tools.codeFunction(
+        userCode +
+          `;function _$(){
+        return {Animal, Dog};
+      }`,
+        '_$',
+      );
+
+      if (
+        valid.Dog &&
+        valid.Animal &&
+        valid.Dog.prototype instanceof valid.Animal &&
+        valid.Animal.prototype.say &&
+        valid.Dog.prototype.say &&
+        (await tools.codeFunction(
+          'function ' + valid.Animal.prototype.say?.toString(),
+          'say',
+        )) == 'smt' &&
+        (await tools.codeFunction(
+          'function ' + valid.Dog.prototype.say?.toString(),
+          'say',
+        )) == 'гав гав'
+      ) {
+        tools.mark(
+          qId,
+          {
+            editor: userCode,
+          },
+          1,
+        );
+      } else {
+        tools.mark(
+          qId,
+          {
+            editor: userCode,
+          },
+          0,
+        );
+      }
+    };
   },
-  check(qId){
-    shortCode.inputCheck(qId, "кумир")
-  }
 };
 
 export default q;
+
+/*
+class Animal {
+  say(){
+    return "smt"
+  }
+}
+
+class Dog extends Animal {
+  say() {
+    return 'гав гав';
+  }
+}
+
+*/

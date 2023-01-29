@@ -12,7 +12,6 @@ async function render(index: number) {
   if (prev) {
     await prev.check?.(current);
   }
-  current = index;
 
   const section = document.querySelector('section')!;
   if (index === questions.length) {
@@ -39,7 +38,7 @@ async function render(index: number) {
                 out += wrap('lime', 'Правильно');
                 break;
               case 2:
-                out += wrap("lime", 'Харош');
+                out += wrap('lime', 'Харош');
                 break;
               default:
                 out += wrap('lime', 'Да');
@@ -48,7 +47,7 @@ async function render(index: number) {
           } else {
             out += wrap('red', 'Не ответил');
           }
-          return `<li>${out}</li>`;
+          return `<li onclick="render(${index})" >${out}</li>`;
         })
         .join('<hr/>');
     };
@@ -77,14 +76,15 @@ async function render(index: number) {
       if (query) {
         Query.innerHTML = query;
         Query.querySelectorAll('pre code').forEach(async (el) => {
-          el.innerHTML = hljs.highlight(el.innerHTML, {
+          ///@ts-ignore
+          el.innerHTML = hljs.highlight(el.innerText, {
             language: 'typescript',
           }).value;
         });
       }
     }
   }
-
+  current = index;
   ButtonPrev.style.display = current - 1 < 0 ? 'none' : 'block';
   ButtonNext.style.display = current + 1 > questions.length ? 'none' : 'block';
 
@@ -94,4 +94,7 @@ async function render(index: number) {
 
 ButtonPrev.onclick = () => render(current - 1);
 ButtonNext.onclick = () => render(current + 1);
-render(0);
+render(current);
+
+// @ts-ignore
+window.render = render;

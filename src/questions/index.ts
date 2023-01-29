@@ -10,7 +10,6 @@ import q7 from './q7';
 import q8 from './q8';
 import q9 from './q9';
 import q10 from './q10';
-
 const list = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10] as Question[];
 
 export default list;
@@ -41,8 +40,8 @@ export const tools = {
   getQuestions<T extends HTMLElement>(qId: number) {
     return Array.from(document.getElementsByClassName(`quest-${qId}`)) as T[];
   },
-  answered(qId: number){
-    return !!answers[qId]
+  answered(qId: number) {
+    return !!answers[qId];
   },
 
   restoreButton(qId: number) {
@@ -52,15 +51,14 @@ export const tools = {
         .classList.add(style['button-selected']);
     }
   },
-  restoreCode(qId: number) {
-    if (answers[qId]) {
-      (<HTMLInputElement>document.getElementById(`q${qId}`)).value=answers[qId].data.code
-    }
-  },
   restoreInput(qId: number) {
     if (answers[qId]) {
-      (<HTMLInputElement>document.getElementById(`q${qId}`)).value=answers[qId].data.text
+      (<HTMLInputElement>document.getElementById(`q${qId}`)).value =
+        answers[qId].data.text;
     }
+  },
+  restoreEditor(qId: number) {
+    return answers[qId]?.data.editor ?? '';
   },
 
   buttonColor(qId: number, selectedId: string) {
@@ -75,25 +73,30 @@ export const tools = {
   checkSelected(qId: number, targetId: string) {
     return answers[qId]?.data.selected != targetId;
   },
-  getCode(qId: number) {
-    return (<HTMLInputElement>document.getElementById(`q${qId}`)).value
+  rndStr() {
+    return (Math.random() + 1).toString(36).substring(2);
   },
-  getInput(qId: number) { // Это только для инпута, если код менять будешь
-    return (<HTMLInputElement>document.getElementById(`q${qId}`)).value
+  rndInt(max: number) {
+    return Math.floor(Math.random() * max);
   },
-  rndStr(){
-    return (Math.random()+1).toString(36).substring(2)
-  },
-  rndInt(max: number){
-    return Math.floor(Math.random() * max)
-  },
-  codeFunction(userCode: string, functionName: string, ...params: any){
-    const p=this.rndStr();
-    return eval(`new Promise(async(_0x${p})=>{try{${userCode.replaceAll("_0x","0x")};_0x${p}(await ${functionName}(...${JSON.stringify(params)}))}catch(e){_0x${p}(0)}})`)
+  codeFunction(userCode: string, functionName: string, ...params: any) {
+    const p = this.rndStr();
+    return eval(
+      `new Promise(
+        async(_0x${p})=>{
+          try{
+            ${userCode.replaceAll('_0x', '0x')};
+            _0x${p}(await ${functionName}(...${JSON.stringify(params)}))
+          }catch(e){
+            _0x${p}(0)
+          }
+        }
+      )`,
+    );
   },
   fixInput(text: string) {
-    return text.toLowerCase().replaceAll(/\s+/gm," ").trim()
-  }
+    return text.toLowerCase().replaceAll(/\s+/gm, ' ').trim();
+  },
 };
 
 export const shortCode = {
@@ -118,26 +121,34 @@ export const shortCode = {
       };
     });
   },
-  code(qId: number){
+  code(qId: number) {
     tools.restoreCode(qId);
   },
   input(qId: number) {
     tools.restoreInput(qId);
   },
-  inputCheck(qId: number, answer: string, lowercase: boolean=true){
+  inputCheck(qId: number, answer: string, lowercase: boolean = true) {
     let userInput = tools.getInput(qId);
-    if(
-      (lowercase)
-      ?tools.fixInput(userInput) == tools.fixInput(answer)
-      :userInput == answer)
-    {
-      tools.mark(qId, {
-        text:userInput
-      }, 1)
-    }else{
-      tools.mark(qId, {
-        text:userInput
-      }, 0)
+    if (
+      lowercase
+        ? tools.fixInput(userInput) == tools.fixInput(answer)
+        : userInput == answer
+    ) {
+      tools.mark(
+        qId,
+        {
+          text: userInput,
+        },
+        1,
+      );
+    } else {
+      tools.mark(
+        qId,
+        {
+          text: userInput,
+        },
+        0,
+      );
     }
   },
-}
+};

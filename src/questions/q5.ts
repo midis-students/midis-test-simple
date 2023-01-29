@@ -1,20 +1,65 @@
-import { Question, shortCode } from '.';
+import { Question, tools } from '.';
+import { createEditor } from '../editor';
 
-// Инпут
+// Код
 
 const q: Question = {
-  short: 'Сталин не одобряет',
+  short: 'Правильный тип',
   query() {
-    return `<h1>Помнишь?</h1>
-    <p>В каком году <s>распался ссср</s> основали 1С?</p>`;
+    return `
+			<h1>Напишите правильное определение типа <strong>type Person</strong> для переменной</h1>
+			<pre>
+      <code>
+      let person: { firstName: string, level: "High" | "Medium" | "Low" };
+      </code>
+      </pre>
+		`;
   },
   answer(container, qId) {
-    container.innerHTML = `<input id="q${qId}" type="number">`;
-    shortCode.input(qId);
+    const getValue = createEditor(container, tools.restoreEditor(qId));
+    this.check = async (qId) => {
+      let userCode = getValue();
+      console.log(
+        tools.fixInput(
+          userCode
+            .replaceAll('\n', '')
+            .replaceAll("'", '"')
+            .replaceAll(' ', ''),
+        ),
+      );
+      if (
+        tools
+          .fixInput(
+            userCode
+              .replaceAll('\n', '')
+              .replaceAll("'", '"')
+              .replaceAll(' ', ''),
+          )
+          .indexOf(
+            `type person = { firstname: string, level: "high" | "medium" | "low" }`.replaceAll(
+              ' ',
+              '',
+            ),
+          ) != -1
+      ) {
+        tools.mark(
+          qId,
+          {
+            editor: getValue(),
+          },
+          1,
+        );
+      } else {
+        tools.mark(
+          qId,
+          {
+            editor: getValue(),
+          },
+          0,
+        );
+      }
+    };
   },
-  check(qId){
-    shortCode.inputCheck(qId, "1991")
-  }
 };
 
 export default q;

@@ -1,32 +1,19 @@
-import { Question, tools, shortCode } from '.';
-
-// Код
+import { Question, shortCode } from '.';
 
 const q: Question = {
-  short: '!',
+  short: 'Предшествиник TypeScript',
   query() {
-    return `
-      <h1>({}=!={})</h1>
-      <p>Переставь <strong>!</strong> так, чтобы условие вернуло <strong>true</strong></p>
-      <code>({}=!={})</code>
-    `;
+    return `<h1>Какой из следующих языков программирования повлиял на создание TypeScript?</p>`;
   },
   answer(container, qId) {
-    container.innerHTML = `<input id="q${qId}" type="text">`;
-    shortCode.code(qId);
+    container.innerHTML = `
+      <button class="quest-${qId}" id="q${qId}a0" data-score=0>Java</button>
+      <button class="quest-${qId}" id="q${qId}a1" data-score=1>JavaScript</button>
+      <button class="quest-${qId}" id="q${qId}a2" data-score=0>CoffeScript</button>
+      <button class="quest-${qId}" id="q${qId}a3" data-score=0>C#</button>
+    `;
+    shortCode.buttons(qId);
   },
-  check(qId){
-    let userCode = tools.getCode(qId);
-    if(userCode.replaceAll("!", "") == "({}=={})"&&tools.codeFunction(`function _(){return ${userCode}}`, "_")){
-      tools.mark(qId, {
-        code:userCode
-      }, 1)
-    }else{
-      tools.mark(qId, {
-        code:userCode
-      }, 0)
-    }
-  }
 };
 
 export default q;

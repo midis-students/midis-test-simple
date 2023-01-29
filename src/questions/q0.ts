@@ -1,21 +1,21 @@
 import { Question, shortCode } from '.';
 
-// Кнопочки
-
 const q: Question = {
-  short: 'Вы дядя женя?',
+  short: 'Кто разработал TypeScript?',
   query() {
-    //container.style
-    return `<h1>Hello ...?</h1>`;
+    return `
+    <h1>Кто разработал TypeScript?</h1>
+    <p>Выберите из предложенных вариантов</p>
+    `;
   },
   answer(container, qId) {
     container.innerHTML = `
-        <button class="quest-${qId}" id="q${qId}a0" data-score=10>Женя</button>
-        <button class="quest-${qId}" id="q${qId}a1" data-score=1>World</button>
-        <button class="quest-${qId}" id="q${qId}a2" data-score=0>Somebody</button>
+        <button class="quest-${qId}" id="q${qId}a0" data-score=0>Amazon</button>
+        <button class="quest-${qId}" id="q${qId}a1" data-score=0>Битрикс</button>
+        <button class="quest-${qId}" id="q${qId}a2" data-score=1>Microsoft</button>
+        <button class="quest-${qId}" id="q${qId}a3" data-score=0>Oracle</button>
 			`;
-
-      shortCode.buttons(qId);
+    shortCode.buttons(qId);
   },
 };
 
