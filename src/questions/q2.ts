@@ -5,7 +5,6 @@ const q: Question = {
     return `
       <h1>Куб</h1>
       <p>Напишите функцию <strong>cube</strong>, которая принимает переменную <strong>N</strong> в виде числа и возвращает число N в кубе</p>
-      <code>function cube(N) {return N*N*N}</code>
     `;
   },
   answer(container, qId) {
