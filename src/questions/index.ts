@@ -9,8 +9,7 @@ import q6 from './q6';
 import q7 from './q7';
 import q8 from './q8';
 import q9 from './q9';
-import q10 from './q10';
-const list = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10] as Question[];
+const list = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9] as Question[];
 
 export default list;
 

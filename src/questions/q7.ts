@@ -18,7 +18,7 @@ const q: Question = {
 
       if (
         (await tools.codeFunction(userCode, 'solution', 'abcde', 'cde')) &&
-        (await tools.codeFunction(userCode, 'solution', 'abcde', 'abc'))
+        !(await tools.codeFunction(userCode, 'solution', 'abcde', 'abc'))
       ) {
         tools.mark(
           qId,

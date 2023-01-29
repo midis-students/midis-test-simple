@@ -33,10 +33,6 @@ const q: Question = {
         valid.Animal.prototype.say &&
         valid.Dog.prototype.say &&
         (await tools.codeFunction(
-          'function ' + valid.Animal.prototype.say?.toString(),
-          'say',
-        )) == 'smt' &&
-        (await tools.codeFunction(
           'function ' + valid.Dog.prototype.say?.toString(),
           'say',
         )) == 'гав гав'

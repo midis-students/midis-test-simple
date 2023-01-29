@@ -11,12 +11,10 @@ const q: Question = {
     const getValue = createEditor(container, tools.restoreEditor(qId));
     this.check = async (qId) => {
       let userCode = getValue();
-      let testArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
       if (
         JSON.stringify(
-          await tools.codeFunction(userCode, 'odd_array', testArray),
-        ) == JSON.stringify(testArray)
+          await tools.codeFunction(userCode, 'odd_array', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
+        ) == JSON.stringify([0, 2, 4, 6, 8])
       ) {
         tools.mark(
           qId,
