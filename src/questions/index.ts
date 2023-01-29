@@ -74,5 +74,9 @@ export const shortCode = {
         }
       };
     });
+  },
+  codeFunction(userCode: string, functionName: string, ...params: any){
+    const p=(Math.random()+1).toString(36).substring(2);
+    return eval(`new Promise(async(_0x${p})=>{${textcode.replaceAll("_0x","0x")};_0x${p}(await ${funcName}(...${JSON.stringify(params)}))})`)
   }
 }
