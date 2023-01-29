@@ -51,12 +51,6 @@ export const tools = {
         .classList.add(style['button-selected']);
     }
   },
-  restoreInput(qId: number) {
-    if (answers[qId]) {
-      (<HTMLInputElement>document.getElementById(`q${qId}`)).value =
-        answers[qId].data.text;
-    }
-  },
   restoreEditor(qId: number) {
     return answers[qId]?.data.editor ?? '';
   },
@@ -123,32 +117,5 @@ export const shortCode = {
   },
   code(qId: number) {
     tools.restoreCode(qId);
-  },
-  input(qId: number) {
-    tools.restoreInput(qId);
-  },
-  inputCheck(qId: number, answer: string, lowercase: boolean = true) {
-    let userInput = tools.getInput(qId);
-    if (
-      lowercase
-        ? tools.fixInput(userInput) == tools.fixInput(answer)
-        : userInput == answer
-    ) {
-      tools.mark(
-        qId,
-        {
-          text: userInput,
-        },
-        1,
-      );
-    } else {
-      tools.mark(
-        qId,
-        {
-          text: userInput,
-        },
-        0,
-      );
-    }
   },
 };
