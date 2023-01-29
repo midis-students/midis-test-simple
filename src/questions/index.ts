@@ -40,6 +40,9 @@ export const tools = {
   getQuestions<T extends HTMLElement>(qId: number) {
     return Array.from(document.getElementsByClassName(`quest-${qId}`)) as T[];
   },
+  answered(qId: number){
+    return !!answers[qId]
+  },
   markSelected(qId: number) {
     if (answers[qId]) {
       document
@@ -62,21 +65,11 @@ export const tools = {
   getCode(qId: number) {
     return (<HTMLInputElement>document.getElementById(`q${qId}`)).value
   },
+  getInput(qId: number) { // Это только для инпута, если код менять будешь
+    return (<HTMLInputElement>document.getElementById(`q${qId}`)).value
+  },
   rnd(){
     return (Math.random()+1).toString(36).substring(2)
-  },
-  safeCodeFunction(userCode: string, functionName: string, ...params: any){ // Запускает отдельное окно, где и запускается код. В nonBlocking, добавить то что не нужно блочить при необходимости
-    return new Promise((resolve)=>{
-      const nonBlocking = ["Object","eval","JSON","close"];
-      let win = window.open("", "_blank", "width=1px,height=1px")
-      let app = [this.rnd(),this.rnd()];
-      const scr = win!.document.createElement("script");
-      scr.innerHTML=`const _0x${app}=${JSON.stringify(nonBlocking)};Object.keys(window).forEach($=>{if(_0x${app}.indexOf($)==-1)eval("delete "+$)});Object.getOwnPropertyNames(window).forEach($=>{if(_0x${app}.indexOf($)==-1)eval("delete "+$)});delete Object;delete eval;${userCode};document.body.innerText=JSON.stringify(${functionName}(...${JSON.stringify(params)}))`
-      win!.document.body.appendChild(scr)
-      const data = JSON.parse(win!.document.body.innerText);
-      win!.close()
-      resolve(data)
-    })
   },
   codeFunction(userCode: string, functionName: string, ...params: any){
     const p=(Math.random()+1).toString(36).substring(2);
@@ -108,5 +101,21 @@ export const shortCode = {
         }
       };
     });
+  },
+  input(qId: number, answer: string, lowercase: boolean=true){
+    let userInput = tools.getInput(qId);
+    if(
+      (lowercase)
+      ?tools.fixInput(userInput) == tools.fixInput(answer)
+      :userInput == answer)
+    {
+      tools.mark(qId, {
+        text:userInput
+      }, 1)
+    }else{
+      tools.mark(qId, {
+        text:userInput
+      }, 0)
+    }
   }
 }

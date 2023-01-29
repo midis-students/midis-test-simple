@@ -1,9 +1,9 @@
 import { Question, tools } from '.';
 const q: Question = {
-  short: 'Hello world!',
+  short: 'Куб',
   query() {
     return `
-      <h1>Hello world!</h1>
+      <h1>Куб</h1>
       <p>Напишите функцию <strong>cube</strong>, которая принимает переменную <strong>N</strong> в виде числа и возвращает число N в кубе</p>
       <code>function cube(N) {return N*N*N}</code>
     `;

@@ -1,12 +1,15 @@
-import { Question, tools } from '.';
+import { Question, shortCode } from '.';
 const q: Question = {
-  short: 'QTitle8',
+  short: 'Хахатон',
   query() {
-    return `Q8`;
+    return `<h1>Ну вот и похихикали</h1><p>Сколько рублей проиграла команда Восторг на VK хахатоне</p>`;
   },
   answer(container, qId) {
-    container.innerHTML = ``;
+    container.innerHTML = `<input id="q${qId}" type="number">`;
   },
+  check(qId){
+    shortCode.input(qId, "100000")
+  }
 };
 
 export default q;

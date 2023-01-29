@@ -1,22 +1,16 @@
-import { Question, tools } from '.';
+import { Question, shortCode } from '.';
 const q: Question = {
-  short: 'Код',
+  short: 'Сталин не одобряет',
   query() {
-    //container.style
-    return `<pre><code>
-        function sum(a: number,b: number){
-          return a + b;
-        }
-        sum("zalupa",1);
-      </code></pre>`;
+    return `<h1>Помнишь?</h1>
+    <p>В каком году <s>распался ссср</s> основали 1С?</p>`;
   },
   answer(container, qId) {
-    container.innerHTML = `
-				<div>
-					
-				</div>
-			`;
+    container.innerHTML = `<input id="q${qId}" type="number">`;
   },
+  check(qId){
+    shortCode.input(qId, "1991")
+  }
 };
 
 export default q;

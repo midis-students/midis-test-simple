@@ -38,6 +38,8 @@ function render(index: number) {
               case 1:
                 out += wrap('lime', 'Правильно');
                 break;
+              case 2:
+                out += wrap("lime", 'Молодец')
               default:
                 out += wrap('lime', 'Да');
             }
