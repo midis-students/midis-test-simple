@@ -115,6 +115,6 @@ export const shortCode = {
     });
   },
   code(qId: number) {
-    tools.restoreCode(qId);
+    tools.restoreEditor(qId);
   },
 };
