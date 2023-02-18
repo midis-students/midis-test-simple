@@ -8,6 +8,7 @@ const q: Question = {
   query() {
     return `
 			<h1>Напишите класс Dog, который наследуется от класса Animal, и вызывает метод say</h1>
+      <p class = "correction">Код на TypeScript</p>
       <pre><code>
       const dog = new Dog();
       dog.say(); // гав-гав

@@ -7,7 +7,8 @@ const q: Question = {
   short: 'Правильный тип',
   query() {
     return `
-			<h1>Напишите правильное определение типа <strong>type Person</strong> для переменной</h1>
+			<h1>Напишите правильное определение типа <strong>type Person</strong> для переменной Person</h1>
+      <p class = "correction">Код на TypeScript</p>
 			<pre>
       <code>
       let person: { firstName: string, level: "High" | "Medium" | "Low" };

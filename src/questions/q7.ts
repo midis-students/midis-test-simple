@@ -7,8 +7,12 @@ const q: Question = {
   short: 'Ends With',
   query() {
     return `
-			<h1>Ends With</h1>
-			<p>напишете функцию <strong>solution</strong>, чтобы оно возвращало true, если первый переданный аргумент (строка) заканчивается вторым аргументом (тоже строкой).</p>
+			<h1>"Заканчивается на"</h1>
+      <p class = "correction">Код на TypeScript</p>
+			<p>напишете функцию <strong>solution</strong>, на  <strong>TypeScript</strong> котрая возвращает true, когда первый переданный аргумент (строка) заканчивается вторым аргументом (тоже строкой). 
+      <br> Пример: <br> solution('abcde', 'cde') === true, 
+      <br> solution('abcde', 'abc') === false</p>
+      
 		`;
   },
   answer(container, qId) {

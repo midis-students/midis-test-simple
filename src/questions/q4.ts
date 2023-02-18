@@ -6,6 +6,7 @@ const q: Question = {
   short: 'Обобщение',
   query() {
     return `<h1>У нас есть следующий интерфейс, который представляет пользователя:</h1>
+    <p class = "correction">Код на TypeScript</p>
       <pre><code>
   interface User {
     id: any;

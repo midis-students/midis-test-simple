@@ -4,6 +4,7 @@ const q: Question = {
   short: 'Abstract Class',
   query() {
     return `<h1>Что вернет этот код на TypeScript?</h1>
+    <p class = "correction">Код на TypeScript</p>
       <pre><code>
   abstract class Foo{
     constructor(){

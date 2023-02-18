@@ -5,7 +5,10 @@ const q: Question = {
   short: 'Рекурсия',
   query() {
     return `<h1>Цифровой корень — это рекурсивная сумма всех цифр числа.</h1>
-    <p>Напишите функцию <strong>digital_root<strong> которая возвращает сумму всех цифр</p>`;
+    <p class = "correction">Код на TypeScript</p>
+    <p>Напишите функцию <strong>digital_root</strong> которая возвращает сумму всех цифр
+    <br>Пример<br>
+    16  =  1 + 6 = 7</p>`;
   },
   answer(container, qId) {
     const getValue = createEditor(container, tools.restoreEditor(qId));

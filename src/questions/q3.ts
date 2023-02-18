@@ -6,6 +6,7 @@ const q: Question = {
   short: 'Utility Type',
   query() {
     return `<h1>У нас есть тип в нашей кодовой базе для комментария:</h1>
+    <p class = "correction">Код на TypeScript</p>
       <pre><code>
   type Comment = {
     comment: string;
