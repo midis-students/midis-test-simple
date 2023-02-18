@@ -3,11 +3,11 @@ import { Question, shortCode } from '.';
 const q: Question = {
   short: 'Abstract Class',
   query() {
-    return `<h1>Что вернет этот код?</h1>
+    return `<h1>Что вернет этот код на TypeScript?</h1>
       <pre><code>
   abstract class Foo{
     constructor(){
-      console.log("Hello world")
+      console.log("Hello world");
     }  
   }
   new Foo();
