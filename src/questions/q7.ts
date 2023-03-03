@@ -10,13 +10,18 @@ const q: Question = {
 			<h1>"Заканчивается на"</h1>
       <p class = "correction">Код на TypeScript</p>
 			<p>напишете функцию <strong>solution</strong>, на  <strong>TypeScript</strong> котрая возвращает true, когда первый переданный аргумент (строка) заканчивается вторым аргументом (тоже строкой). 
-      <br> Пример: <br> solution('abcde', 'cde') === true, 
-      <br> solution('abcde', 'abc') === false</p>
+      <br> Пример: <br> solution('abcde', 'cde') === true; 
+      <br> solution('abcde', 'abc') === false;
+      </p>
       
 		`;
   },
   answer(container, qId) {
-    const getValue = createEditor(container, tools.restoreEditor(qId));
+    const defaultValue = `function solution(start, end){\n\treturn false;\n}`;
+    const getValue = createEditor(
+      container,
+      tools.restoreEditor(qId, defaultValue),
+    );
     this.check = async (qId) => {
       let userCode = getValue();
 

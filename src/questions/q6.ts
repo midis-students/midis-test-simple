@@ -7,16 +7,15 @@ const q: Question = {
   short: 'Наследование',
   query() {
     return `
-			<h1>Напишите класс Dog, который наследуется от класса Animal, и вызывает метод say</h1>
-      <p class = "correction">Код на TypeScript</p>
-      <pre><code>
-      const dog = new Dog();
-      dog.say(); // гав-гав
-      </code></pre>
+			<h1>Напишите класс Dog, который наследуется от класса Animal, и переопределяет метод say</h1>
 		`;
   },
   answer(container, qId) {
-    const getValue = createEditor(container, tools.restoreEditor(qId));
+    const defaultValue = `class Animal {\n say(){\n  throw new Error("method say not implemented");\n } \n}\n\n/*\ntype here\n*/ \n\nconst dog = new Dog();\ndog.say();`;
+    const getValue = createEditor(
+      container,
+      tools.restoreEditor(qId, defaultValue),
+    );
     this.check = async (qId) => {
       let userCode = getValue();
       let valid = await tools.codeFunction(

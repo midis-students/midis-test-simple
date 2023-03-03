@@ -8,7 +8,6 @@ const q: Question = {
   query() {
     return `
 			<h1>Напишите правильное определение типа <strong>type Person</strong> для переменной Person</h1>
-      <p class = "correction">Код на TypeScript</p>
 			<pre>
       <code>
       let person: { firstName: string, level: "High" | "Medium" | "Low" };
@@ -17,7 +16,11 @@ const q: Question = {
 		`;
   },
   answer(container, qId) {
-    const getValue = createEditor(container, tools.restoreEditor(qId));
+    const defaultValue = 'type Person = {\n\t/// type here...\n}';
+    const getValue = createEditor(
+      container,
+      tools.restoreEditor(qId, defaultValue),
+    );
     this.check = async (qId) => {
       let userCode = getValue();
       console.log(

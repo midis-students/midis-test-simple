@@ -5,16 +5,24 @@ import questions from './questions';
 const ButtonPrev = document.querySelector<HTMLButtonElement>('#btn-prev')!;
 const ButtonNext = document.querySelector<HTMLButtonElement>('#btn-next')!;
 
-let current = 0;
+let current = Number(sessionStorage.getItem('page')) ?? -1;
 
 async function render(index: number) {
+  sessionStorage.setItem('page', index.toString());
   const prev = questions.at(current);
   if (prev) {
     await prev.check?.(current);
   }
 
   const section = document.querySelector('section')!;
-  if (index === questions.length) {
+
+  if (index === -1) {
+    section.innerHTML = `<div>
+    <h1>Проверка знаний TypeScript</h1>
+    <p>Все вопросы будут связанны с основами программирования на языке TypeScript</p>
+    <strong>Код который представлен или нужно будет вводить также на TypeScript!</strong>
+    </div>`;
+  } else if (index === questions.length) {
     let finScore = Object.values(window.answers)
       .map(({ score }) => score)
       .reduce((a, b) => a + b, 0);
@@ -85,7 +93,7 @@ async function render(index: number) {
     }
   }
   current = index;
-  ButtonPrev.style.display = current - 1 < 0 ? 'none' : 'block';
+  ButtonPrev.style.display = current - 1 < -1 ? 'none' : 'block';
   ButtonNext.style.display = current + 1 > questions.length ? 'none' : 'block';
 
   ButtonNext.innerHTML =

@@ -8,10 +8,16 @@ const q: Question = {
     <p class = "correction">Код на TypeScript</p>
     <p>Напишите функцию <strong>digital_root</strong> которая возвращает сумму всех цифр
     <br>Пример<br>
-    16  =  1 + 6 = 7</p>`;
+    <p>16  =  1 + 6 = 7</p>
+    <p>942 =  9 + 4 + 2 = 15 = 1 + 5 = 6</p>
+    </p>`;
   },
   answer(container, qId) {
-    const getValue = createEditor(container, tools.restoreEditor(qId));
+    const defaultValue = `function digital_root(number){\n\treturn 0;\n}`;
+    const getValue = createEditor(
+      container,
+      tools.restoreEditor(qId, defaultValue),
+    );
     this.check = async (qId) => {
       let userCode = getValue();
 

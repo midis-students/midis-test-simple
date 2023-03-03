@@ -6,22 +6,21 @@ const q: Question = {
   short: 'Обобщение',
   query() {
     return `<h1>У нас есть следующий интерфейс, который представляет пользователя:</h1>
-    <p class = "correction">Код на TypeScript</p>
       <pre><code>
   interface User {
     id: any;
     name: string;
-    email: string
+    email: string;
   } 
   </code></pre>
-  <h2>Как мы можем улучшить это, удалив <strong>any</strong> тип <strong>id</strong> свойства и позволив потребителю интерфейса указать его тип?</h2>
+  <h2>Как мы можем улучшить это, заменив "id: any" свойство и позволив потребителю интерфейса указать его тип?</h2>
 <div style="display: flex;gap: 5px">
       <pre style="width: 100%"><code>
   /// Вараинт 1
   interface User {
     id: string | number;
     name: string;
-    email: string
+    email: string;
   }
 </code>
       </pre><pre style="width: 100%"><code>
@@ -29,14 +28,14 @@ const q: Question = {
   interface &lt;UserIdType&gt;User {
     id: UserIdType;
     name: string;
-    email: string
+    email: string;
   }
 </code></pre><pre style="width: 100%"><code>
   /// Вариант 3
   interface User&lt;UserIdType&gt; {
     id: UserIdType;
     name: string;
-    email: string
+    email: string;
   }
 </code></pre>
     </div>

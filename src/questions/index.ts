@@ -50,8 +50,8 @@ export const tools = {
         .classList.add(style['button-selected']);
     }
   },
-  restoreEditor(qId: number) {
-    return answers[qId]?.data.editor ?? '';
+  restoreEditor(qId: number, defaultValue = '') {
+    return answers[qId]?.data.editor ?? defaultValue;
   },
 
   buttonColor(qId: number, selectedId: string) {
