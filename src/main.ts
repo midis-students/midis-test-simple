@@ -5,7 +5,7 @@ import questions from './questions';
 const ButtonPrev = document.querySelector<HTMLButtonElement>('#btn-prev')!;
 const ButtonNext = document.querySelector<HTMLButtonElement>('#btn-next')!;
 
-let current = Number(sessionStorage.getItem('page')) ?? -1;
+let current = sessionStorage.getItem('page') ? Number(sessionStorage.getItem('page')) : -1;
 
 async function render(index: number) {
   sessionStorage.setItem('page', index.toString());
