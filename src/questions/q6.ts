@@ -25,33 +25,34 @@ const q: Question = {
       }`,
         '_$',
       );
-
-      if (
-        valid.Dog &&
-        valid.Animal &&
-        valid.Dog.prototype instanceof valid.Animal &&
-        valid.Animal.prototype.say &&
-        valid.Dog.prototype.say &&
-        (await tools.codeFunction(
-          'function ' + valid.Dog.prototype.say?.toString(),
-          'say',
-        )) == 'гав гав'
-      ) {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          1,
-        );
-      } else {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          0,
-        );
+      if(userCode != "") {
+        if (
+          valid.Dog &&
+          valid.Animal &&
+          valid.Dog.prototype instanceof valid.Animal &&
+          valid.Animal.prototype.say &&
+          valid.Dog.prototype.say &&
+          (await tools.codeFunction(
+            'function ' + valid.Dog.prototype.say?.toString(),
+            'say',
+          )) == 'гав гав'
+        ) {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            1,
+          );
+        } else {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            0,
+          );
+        }
       }
     };
   },

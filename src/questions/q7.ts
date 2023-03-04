@@ -24,26 +24,27 @@ const q: Question = {
     );
     this.check = async (qId) => {
       let userCode = getValue();
-
-      if (
-        (await tools.codeFunction(userCode, 'solution', 'abcde', 'cde')) &&
-        !(await tools.codeFunction(userCode, 'solution', 'abcde', 'abc'))
-      ) {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          1,
-        );
-      } else {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          0,
-        );
+      if(userCode != "") {
+        if (
+          (await tools.codeFunction(userCode, 'solution', 'abcde', 'cde')) &&
+          !(await tools.codeFunction(userCode, 'solution', 'abcde', 'abc'))
+        ) {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            1,
+          );
+        } else {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            0,
+          );
+        }
       }
     };
   },

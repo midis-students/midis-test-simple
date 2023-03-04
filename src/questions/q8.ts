@@ -20,26 +20,27 @@ const q: Question = {
     );
     this.check = async (qId) => {
       let userCode = getValue();
-
-      if (
-        (await tools.codeFunction(userCode, 'digital_root', 16)) == 7 &&
-        (await tools.codeFunction(userCode, 'digital_root', 942)) == 6
-      ) {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          1,
-        );
-      } else {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          0,
-        );
+      if(userCode != "") {
+        if (
+          (await tools.codeFunction(userCode, 'digital_root', 16)) == 7 &&
+          (await tools.codeFunction(userCode, 'digital_root', 942)) == 6
+        ) {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            1,
+          );
+        } else {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            0,
+          );
+        }
       }
     };
   },

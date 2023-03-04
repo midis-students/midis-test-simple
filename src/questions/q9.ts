@@ -22,32 +22,34 @@ const q: Question = {
     );
     this.check = async (qId) => {
       let userCode = getValue();
-      if (
-        JSON.stringify(
-          await tools.codeFunction(
-            userCode,
-            'odd_array',
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-          ),
-        ) == JSON.stringify([0, 2, 4, 6, 8])
-      ) {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          1,
-        );
-      } else {
-        tools.mark(
-          qId,
-          {
-            editor: userCode,
-          },
-          0,
-        );
-      }
-    };
+      if(userCode != "") {
+        if (
+          JSON.stringify(
+            await tools.codeFunction(
+              userCode,
+              'odd_array',
+              [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            ),
+          ) == JSON.stringify([0, 2, 4, 6, 8])
+        ) {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            1,
+          );
+        } else {
+          tools.mark(
+            qId,
+            {
+              editor: userCode,
+            },
+            0,
+          );
+        }
+      };
+    }
   },
 };
 
