@@ -11,7 +11,9 @@ async function render(index: number) {
   sessionStorage.setItem('page', index.toString());
   const prev = questions.at(current);
   if (prev) {
-    await prev.check?.(current);
+	 try{
+    		await prev.check?.(current);
+	 }catch(e){}
   }
 
   const section = document.querySelector('section')!;
