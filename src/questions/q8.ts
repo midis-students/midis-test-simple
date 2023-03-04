@@ -20,7 +20,7 @@ const q: Question = {
     );
     this.check = async (qId) => {
       let userCode = getValue();
-      if(userCode != "") {
+      if (userCode != defaultValue) {
         if (
           (await tools.codeFunction(userCode, 'digital_root', 16)) == 7 &&
           (await tools.codeFunction(userCode, 'digital_root', 942)) == 6

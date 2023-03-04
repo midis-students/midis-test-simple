@@ -31,36 +31,38 @@ const q: Question = {
             .replaceAll(' ', ''),
         ),
       );
-      if (
-        tools
-          .fixInput(
-            userCode
-              .replaceAll('\n', '')
-              .replaceAll("'", '"')
-              .replaceAll(' ', ''),
-          )
-          .indexOf(
-            `type person = { firstname: string, level: "high" | "medium" | "low" }`.replaceAll(
-              ' ',
-              '',
-            ),
-          ) != -1
-      ) {
-        tools.mark(
-          qId,
-          {
-            editor: getValue(),
-          },
-          1,
-        );
-      } else {
-        tools.mark(
-          qId,
-          {
-            editor: getValue(),
-          },
-          0,
-        );
+      if (userCode != defaultValue) {
+        if (
+          tools
+            .fixInput(
+              userCode
+                .replaceAll('\n', '')
+                .replaceAll("'", '"')
+                .replaceAll(' ', ''),
+            )
+            .indexOf(
+              `type person = { firstname: string, level: "high" | "medium" | "low" }`.replaceAll(
+                ' ',
+                '',
+              ),
+            ) != -1
+        ) {
+          tools.mark(
+            qId,
+            {
+              editor: getValue(),
+            },
+            1,
+          );
+        } else {
+          tools.mark(
+            qId,
+            {
+              editor: getValue(),
+            },
+            0,
+          );
+        }
       }
     };
   },

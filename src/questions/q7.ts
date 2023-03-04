@@ -24,7 +24,7 @@ const q: Question = {
     );
     this.check = async (qId) => {
       let userCode = getValue();
-      if(userCode != "") {
+      if (userCode != defaultValue) {
         if (
           (await tools.codeFunction(userCode, 'solution', 'abcde', 'cde')) &&
           !(await tools.codeFunction(userCode, 'solution', 'abcde', 'abc'))

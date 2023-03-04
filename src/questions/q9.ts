@@ -22,7 +22,8 @@ const q: Question = {
     );
     this.check = async (qId) => {
       let userCode = getValue();
-      if(userCode != "") {
+      console.log(userCode);
+      if (userCode != defaultValue) {
         if (
           JSON.stringify(
             await tools.codeFunction(
@@ -48,8 +49,8 @@ const q: Question = {
             0,
           );
         }
-      };
-    }
+      }
+    };
   },
 };
 

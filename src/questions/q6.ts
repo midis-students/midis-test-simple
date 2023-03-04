@@ -25,7 +25,7 @@ const q: Question = {
       }`,
         '_$',
       );
-      if(userCode != "") {
+      if (userCode != defaultValue) {
         if (
           valid.Dog &&
           valid.Animal &&
