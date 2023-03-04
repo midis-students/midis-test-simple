@@ -6,7 +6,7 @@ const ButtonPrev = document.querySelector<HTMLButtonElement>('#btn-prev')!;
 const ButtonNext = document.querySelector<HTMLButtonElement>('#btn-next')!;
 
 let pageInStorage = sessionStorage.getItem('page');
-let current = pageInStorage ? Number(pageInStorage) : -1;
+let current = Number(pageInStorage ?? -1);
 
 async function render(index: number) {
   sessionStorage.setItem('page', index.toString());
